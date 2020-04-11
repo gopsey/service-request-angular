@@ -1,1 +1,26 @@
-<p>register works!</p>
+<h1>Register a new account</h1>
+
+<div>
+    <form [formGroup]="registerForm" (ngSubmit)="onRegisterSubmit()">
+        <label for="firstName">First Name: </label><br>
+        <input type="text" name="firstName" id="firstName" formControlName="first_name" /><br><br>
+
+        <label for="lastName">Last Name: </label><br>
+        <input type="text" name="lastName" id="lastName" formControlName="last_name" /><br><br>
+        
+        <label for="companyName">Company Name: </label><br>
+        <input type="text" name="companyName" id="companyName" formControlName="company_name" /><br><br>
+        
+        <label for="phone">Phone Number: </label><br>
+        <input type="text" name="phone" id="phone" formControlName="phone" /><br><br>
+
+        <label for="email">Email ID: </label><br>
+        <input type="email" name="email" id="email" formControlName="email" /><br><br>
+
+        <label for="password">Password: </label><br>
+        <input type="password" name="password" id="password" formControlName="password" /><br><br>
+
+        <input type="submit" value="Register"><br><br>
+    </form>
+    <a routerLink="/login">Please Login if you already have an account</a>
+</div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Router } from "@angular/router";
 
 import { LoginService } from '../../services/login/login.service';
 
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
 
    public loginForm: any;
 
-   constructor(private formBuilder: FormBuilder, private loginService: LoginService) { }
+   constructor(private formBuilder: FormBuilder, private loginService: LoginService, private router: Router) { }
 
    ngOnInit(): void {
       this.loginForm = this.formBuilder.group({
@@ -22,10 +23,13 @@ export class LoginComponent implements OnInit {
    }
 
    onLoginSubmit() {
-      console.log('Credentials entered: ', this.loginForm.value);
+      console.log('Login Credentials entered: ', this.loginForm.value);
       let userCredentials = this.loginForm.value;
       this.loginService.login(userCredentials).subscribe((response) => {
-         console.log('API response success: ', response);
+         console.log('Login API response success: ', response);
+         if (response !== null) {
+            this.router.navigate(['/home']);
+         }
       });
    }
 
