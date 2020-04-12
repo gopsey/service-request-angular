@@ -23,13 +23,13 @@ export class LoginComponent implements OnInit {
    }
 
    onLoginSubmit() {
-      console.log('Login Credentials entered: ', this.loginForm.value);
       let userCredentials = this.loginForm.value;
       this.loginService.login(userCredentials).subscribe((response) => {
-         console.log('Login API response success: ', response);
          if (response !== null) {
             this.router.navigate(['/home']);
          }
+         // Setting user details in session storage
+         sessionStorage.setItem('userProfile', JSON.stringify(response));
       });
    }
 
