@@ -1,1 +1,35 @@
-<p>requested-sr-list works!</p>
+<div class="container-fluid" style="margin-top: 20px;">
+   <h1>Service Requests raised in your company</h1>
+   <table class="table table-hover">
+      <div class="row">
+         <div class="col-sm"><b>Product Model</b></div>
+         <div class="col-sm"><b>Service Type</b></div>
+         <div class="col-sm"><b>Product Invoice number</b></div>
+         <div class="col-sm"><b>Detailed Complaint</b></div>
+         <div class="col-sm"><b>Current Status</b></div>
+         <div class="col-sm"><b>Created Time</b></div>
+      </div>
+      <div>
+         <div class="row" *ngFor="let request of companyTicketsList">
+            <div class="col">
+               {{request.product_model}}
+            </div>
+            <div class="col">
+               {{request.service_type}}
+            </div>
+            <div class="col">
+               {{request.product_invoice_number}}
+            </div>
+            <div class="col">
+               {{request.detailed_complaint}}
+            </div>
+            <div class="col" *ngIf="request.current_status === 'o'">
+               Open
+            </div>
+            <div class="col">
+               {{request.created_time}}
+            </div>
+         </div>
+      </div>
+   </table>
+</div>

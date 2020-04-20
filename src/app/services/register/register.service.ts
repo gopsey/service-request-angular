@@ -7,12 +7,12 @@ import { map } from "rxjs/operators";
 })
 export class RegisterService {
 
-  private url: string = 'http://localhost:8080/serviceRequest/registerUser';
+  private url: string = 'http://localhost:8080/serviceRequest';
 
   constructor(private httpClient: HttpClient) { }
   
-  register(userCredentials: any): any {
-    let registerResponse = this.httpClient.post(this.url, userCredentials)
+  register(userCredentials: any): any | null {
+    let registerResponse = this.httpClient.post(`${this.url}/registerUser`, userCredentials)
        .pipe(map((response: any) => {
           return response;
        },

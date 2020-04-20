@@ -1,3 +1,11 @@
-<p>homepage works!</p>
+<div class="topnav container-fluid">
+    <a id="newRequest" class="active" href="javascript:void(0);" (click)="navigateRequest($event)"
+        style="padding: 14px 16px;">New Service Request</a>
+    <a id="viewRequest" href="javascript:void(0);" (click)="navigateRequest($event)" style="padding: 14px 16px;">View
+        Requests</a>
+</div>
 
-<app-service-request-form></app-service-request-form>
+<app-service-request-form [getProfileDetails]="getProfileDetailsHome" *ngIf="isNavigateTo==='createRequest'">
+</app-service-request-form>
+<app-requested-sr-list [companyTicketsList]="companyTicketsListHome" *ngIf="isNavigateTo==='viewRequest'">
+</app-requested-sr-list>

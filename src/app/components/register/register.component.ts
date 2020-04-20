@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
       this.registerForm = this.formBuilder.group({
          first_name: '',
          last_name: '',
-         company_name: '',
+         company_id: null,
          phone: '',
          email: '',
          password: ''
@@ -28,7 +28,6 @@ export class RegisterComponent implements OnInit {
    }
 
    onRegisterSubmit() {
-      console.log('Register Credentials entered: ', this.registerForm.value);
       let userCredentials = this.registerForm.value;
       this.registerService.register(userCredentials).subscribe((response) => {
          console.log('Register API response success: ', response);

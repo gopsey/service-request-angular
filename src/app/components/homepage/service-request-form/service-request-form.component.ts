@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 
 import { ServiceRequestFormService } from '../../../services/service-request-form/service-request-form.service';
@@ -12,24 +12,29 @@ export class ServiceRequestFormComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private serviceRequestFormService: ServiceRequestFormService) { }
 
+  @Input() getProfileDetails: any;
   public requestForm: any;
   public userProfileValues: any;
 
   ngOnInit(): void {
-    this.userProfileValues = JSON.parse(sessionStorage.getItem('userProfile'));
     this.requestForm = this.formBuilder.group({
       product_model: '',
       service_type: '',
       product_invoice_number: '',
       detailed_complaint: '',
-      email: this.userProfileValues.email
+      email: ''
     });
   }
 
   onRequestSubmit() {
+    let userEmail = (JSON.parse(this.getProfileDetails)).email;
     let requestFormValues = this.requestForm.value;
+    requestFormValues.email = userEmail;
     this.serviceRequestFormService.createServiceRequest(requestFormValues).subscribe((response) => {
       console.log(response);
+      if (response) {
+        alert("Your Request has been submitted successfully!");
+      }
     });
   }
 

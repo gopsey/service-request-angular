@@ -13,6 +13,7 @@ import { RegisterService } from './services/register/register.service';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { ServiceRequestFormComponent } from './components/homepage/service-request-form/service-request-form.component';
 import { RequestedSrListComponent } from './components/homepage/requested-sr-list/requested-sr-list.component';
+import { HomeAuthGuard } from './guards/home-auth.guard';
 
 @NgModule({
    declarations: [
@@ -32,7 +33,8 @@ import { RequestedSrListComponent } from './components/homepage/requested-sr-lis
    ],
    providers: [
       LoginService,
-      RegisterService
+      RegisterService,
+      HomeAuthGuard
    ],
    bootstrap: [AppComponent]
 })
