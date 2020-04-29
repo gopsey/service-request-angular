@@ -1,15 +1,21 @@
 <div class="container-fluid">
-    <h1>Welcome to Service Request Application</h1>
+    <h1 style="text-align: center;">Welcome to Service Request Application</h1>
 
-    <div>
+    <div class="col-md-12" style="text-align: center;">
         <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
-            <label for="email">Enter your email ID</label><br>
-            <input type="email" name="email" id="email" formControlName="email" /><br><br>
+            <div class="col-md-3 mx-auto">
+                <label for="email">Enter your email ID</label><br>
+                <input type="email" name="email" id="email" formControlName="email" class="form-control" />
 
-            <label for="password">Enter your password</label><br>
-            <input type="password" name="password" id="password" formControlName="password" /><br><br>
-
-            <input type="submit" value="Login"><br><br>
+                <label for="password">Enter your password</label><br>
+                <input type="password" name="password" id="password" formControlName="password"
+                    class="form-control" />
+            </div>
+            <div class="col-md-12" style="text-align: center;">
+                <div class="col-md-3 mx-auto">
+                    <input type="submit" value="Login" class="btn btn-primary form-control col-md-12"><br><br>
+                </div>
+            </div>
         </form>
         <a routerLink="/register">Or create an account here</a>
     </div>

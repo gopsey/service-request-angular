@@ -1,23 +1,30 @@
 <div class="container-fluid">
-    <h1>Create a new Service Request</h1>
+    <h1 style="text-align: center;">Create a new Service Request</h1>
 
-    <div>
+    <div class="col-md-12" style="text-align: center;">
         <form [formGroup]="requestForm" (ngSubmit)="onRequestSubmit()">
-            <label for="modelName">Product Model: </label><br>
-            <input type="text" name="modelName" id="modelName" formControlName="product_model" /><br><br>
+            <div class="col-md-3 mx-auto">
+                <label for="modelName">Product Model: </label><br>
+                <input type="text" name="modelName" id="modelName" formControlName="product_model"
+                    class="form-control" />
 
-            <label for="serviceType">Service Type: </label><br>
-            <input type="text" name="serviceType" id="serviceType" formControlName="service_type" /><br><br>
+                <label for="serviceType">Service Type: </label><br>
+                <input type="text" name="serviceType" id="serviceType" formControlName="service_type"
+                    class="form-control" />
 
-            <label for="invoiceNumber">Product Invoice Number: </label><br>
-            <input type="text" name="invoiceNumber" id="invoiceNumber"
-                formControlName="product_invoice_number" /><br><br>
+                <label for="invoiceNumber">Product Invoice Number: </label><br>
+                <input type="text" name="invoiceNumber" id="invoiceNumber" formControlName="product_invoice_number"
+                    class="form-control" />
 
-            <label for="detailedComplaint">Detailed Complaint: </label><br>
-            <input type="text" name="detailedComplaint" id="detailedComplaint"
-                formControlName="detailed_complaint" /><br><br>
-
-            <input type="submit" value="Create"><br><br>
+                <label for="detailedComplaint">Detailed Complaint: </label><br>
+                <textarea type="text" name="detailedComplaint" id="detailedComplaint"
+                    formControlName="detailed_complaint" class="form-control" rows="3"></textarea>
+            </div>
+            <div class="col-md-12" style="text-align: center;">
+                <div class="col-md-3 mx-auto">
+                    <button type="submit" class="btn btn-primary form-control col-md-12">Create</button><br><br>
+                </div>
+            </div>
         </form>
     </div>
 </div>

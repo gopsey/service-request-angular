@@ -4,6 +4,7 @@ import { FormBuilder } from '@angular/forms';
 import { Router } from "@angular/router";
 
 import { RegisterService } from '../../services/register/register.service';
+import { Company } from '../../models/company.model';
 
 @Component({
    selector: 'app-register',
@@ -13,6 +14,11 @@ import { RegisterService } from '../../services/register/register.service';
 export class RegisterComponent implements OnInit {
 
    public registerForm: any;
+   public companiesList: Company[] = [
+      { id: 1, name: 'BVS CORP'},
+      { id: 2, name: 'MAXSELL'},
+      { id: 3, name: 'GOOGLE'}
+   ];
 
    constructor(private formBuilder: FormBuilder, private registerService: RegisterService, private router: Router) { }
 
@@ -20,7 +26,7 @@ export class RegisterComponent implements OnInit {
       this.registerForm = this.formBuilder.group({
          first_name: '',
          last_name: '',
-         company_id: null,
+         companyCode: '',
          phone: '',
          email: '',
          password: ''
@@ -32,6 +38,7 @@ export class RegisterComponent implements OnInit {
       this.registerService.register(userCredentials).subscribe((response) => {
          console.log('Register API response success: ', response);
          if (response !== null) {
+            alert("You are registered successfully! Please login with your credentials.");
             this.router.navigate(['/login']);
          }
       });

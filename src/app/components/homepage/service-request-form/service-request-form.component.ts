@@ -34,6 +34,7 @@ export class ServiceRequestFormComponent implements OnInit {
       console.log(response);
       if (response) {
         alert("Your Request has been submitted successfully!");
+        location.reload();
       }
     });
   }

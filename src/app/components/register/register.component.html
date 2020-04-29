@@ -1,27 +1,51 @@
 <div class="container-fluid">
-    <h1>Register a new account</h1>
+    <h1 style="text-align: center;">Register a new account</h1>
 
-    <div>
+    <div class="col-md-12" style="text-align: center;">
         <form [formGroup]="registerForm" (ngSubmit)="onRegisterSubmit()">
-            <label for="firstName">First Name: </label><br>
-            <input type="text" name="firstName" id="firstName" formControlName="first_name" /><br><br>
+            <div class="col-md-12">
+                <div class="col-md-3" style="display: inline-block">
+                    <label for="firstName">First Name: </label><br>
+                    <input type="text" name="firstName" id="firstName" formControlName="first_name"
+                        class="form-control" />
+                </div>
 
-            <label for="lastName">Last Name: </label><br>
-            <input type="text" name="lastName" id="lastName" formControlName="last_name" /><br><br>
+                <div class="col-md-3" style="display: inline-block">
+                    <label for="lastName">Last Name: </label><br>
+                    <input type="text" name="lastName" id="lastName" formControlName="last_name" class="form-control" />
+                </div>
+            </div>
 
-            <label for="companyName">Company Name: </label><br>
-            <input type="number" name="companyName" id="companyName" formControlName="company_id" /><br><br>
+            <div class="col-md-12">
+                <div class="col-md-3" style="display: inline-block">
+                    <label for="companyCode">Company Code: </label><br>
+                    <input type="text" name="companyCode" id="companyCode" formControlName="companyCode" class="form-control" maxlength="7" />
+                </div>
 
-            <label for="phone">Phone Number: </label><br>
-            <input type="text" name="phone" id="phone" formControlName="phone" /><br><br>
+                <div class="col-md-3" style="display: inline-block">
+                    <label for="phone">Phone Number: </label><br>
+                    <input type="text" name="phone" id="phone" formControlName="phone" class="form-control" />
+                </div>
+            </div>
 
-            <label for="email">Email ID: </label><br>
-            <input type="email" name="email" id="email" formControlName="email" /><br><br>
+            <div class="col-md-12">
+                <div class="col-md-3" style="display: inline-block">
+                    <label for="email">Email ID: </label><br>
+                    <input type="email" name="email" id="email" formControlName="email" class="form-control" />
+                </div>
 
-            <label for="password">Password: </label><br>
-            <input type="password" name="password" id="password" formControlName="password" /><br><br>
+                <div class="col-md-3" style="display: inline-block">
+                    <label for="password">Password: </label><br>
+                    <input type="password" name="password" id="password" formControlName="password"
+                        class="form-control" />
+                </div>
+            </div>
 
-            <input type="submit" value="Register"><br><br>
+            <div class="col-md-12" style="text-align: center;">
+                <div class="col-md-6 mx-auto">
+                    <input type="submit" value="Register" class="btn btn-primary form-control col-md-12"><br><br>
+                </div>
+            </div>
         </form>
         <a routerLink="/login">Please Login if you already have an account</a>
     </div>

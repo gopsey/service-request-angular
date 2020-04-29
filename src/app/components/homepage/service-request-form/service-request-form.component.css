@@ -1,0 +1,14 @@
+.col-md-12 .col-md-3 {
+    text-align: left;
+}
+.col-md-12 .col-md-3 input, textarea {
+    margin-bottom: 20px;
+    border: 1px solid #bfbcb5;
+}
+input.btn, button {
+    margin-top: 10px;
+}
+h1 {
+    margin-bottom: 30px;
+    margin-top: 30px;
+}

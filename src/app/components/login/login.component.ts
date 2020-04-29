@@ -29,9 +29,9 @@ export class LoginComponent implements OnInit {
    onLoginSubmit() {
       let userCredentials = this.loginForm.value;
       this.loginService.login(userCredentials).subscribe((response) => {
-         if (response === true) {
+         if (response) {
             // Setting user details in session storage
-            sessionStorage.setItem('isLoggedIn', JSON.stringify(response));
+            sessionStorage.setItem('isLoggedIn', 'true');
             this.setProfileDetailsByEmail((userCredentials.email).toString());
          }
       });
