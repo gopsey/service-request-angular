@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from "@angular/router";
 
 import { LoginService } from '../../services/login/login.service';
@@ -13,30 +13,41 @@ export class LoginComponent implements OnInit {
 
    public loginForm: any;
    public userDetails: any;
+   public submitted: boolean = false;
 
    constructor(private formBuilder: FormBuilder, private loginService: LoginService, private router: Router) { }
 
    ngOnInit(): void {
       this.loginForm = this.formBuilder.group({
-         email: '',
-         password: ''
+         email: ['', [Validators.required, Validators.email]],
+         password: ['', [Validators.required, Validators.minLength(6)]]
       });
    }
-   
+
+   // convenience getter for easy access to form fields
+   get loginFormControls() { return this.loginForm.controls; }
+
    /**
     * Calls login() in loginService to make authentication
     */
    onLoginSubmit() {
+      this.submitted = true;
       let userCredentials = this.loginForm.value;
-      this.loginService.login(userCredentials).subscribe((response) => {
-         if (response) {
-            // Setting user details in session storage
-            sessionStorage.setItem('isLoggedIn', 'true');
-            this.setProfileDetailsByEmail((userCredentials.email).toString());
-         }
-      });
+      if (!this.loginForm.invalid) {
+         this.loginService.login(userCredentials).subscribe((response) => {
+            if (response) {
+               // Setting user details in session storage
+               sessionStorage.setItem('isLoggedIn', 'true');
+               this.setProfileDetailsByEmail((userCredentials.email).toString());
+            }
+         });
+      }
    }
 
+   /**
+    * Hits getProfile() call, sets user details in session, navigates to homepage
+    * @param userEmail 
+    */
    setProfileDetailsByEmail(userEmail: String) {
       this.loginService.getProfile(userEmail).subscribe((response) => {
          sessionStorage.setItem('userDetails', JSON.stringify(response));

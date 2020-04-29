@@ -4,21 +4,49 @@
     <div class="col-md-12" style="text-align: center;">
         <form [formGroup]="requestForm" (ngSubmit)="onRequestSubmit()">
             <div class="col-md-3 mx-auto">
-                <label for="modelName">Product Model: </label><br>
-                <input type="text" name="modelName" id="modelName" formControlName="product_model"
-                    class="form-control" />
+                <div class="form-group">
+                    <label for="modelName">Product Model: </label>
+                    <input id="modelName" type="text" formControlName="product_model" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && requestFormControls.product_model.errors }" />
+                    <div *ngIf="submitted && requestFormControls.product_model.errors" class="invalid-feedback">
+                        <div *ngIf="requestFormControls.product_model.errors.required">Product Model is required</div>
+                    </div>
+                </div>
 
-                <label for="serviceType">Service Type: </label><br>
-                <input type="text" name="serviceType" id="serviceType" formControlName="service_type"
-                    class="form-control" />
+                <div class="form-group">
+                    <label for="serviceType">Service Type: </label>
+                    <input id="serviceType" name="serviceType" type="text" formControlName="service_type"
+                        class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && requestFormControls.service_type.errors }" />
+                    <div *ngIf="submitted && requestFormControls.service_type.errors" class="invalid-feedback">
+                        <div *ngIf="requestFormControls.service_type.errors.required">Service Type is required</div>
+                    </div>
+                </div>
 
-                <label for="invoiceNumber">Product Invoice Number: </label><br>
-                <input type="text" name="invoiceNumber" id="invoiceNumber" formControlName="product_invoice_number"
-                    class="form-control" />
+                <div class="form-group">
+                    <label for="invoiceNumber">Product Invoice Number: </label>
+                    <input id="invoiceNumber" name="invoiceNumber" type="text" formControlName="product_invoice_number"
+                        class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && requestFormControls.product_invoice_number.errors }" />
+                    <div *ngIf="submitted && requestFormControls.product_invoice_number.errors"
+                        class="invalid-feedback">
+                        <div *ngIf="requestFormControls.product_invoice_number.errors.required">Product Invoice Number
+                            is required</div>
+                    </div>
+                </div>
 
-                <label for="detailedComplaint">Detailed Complaint: </label><br>
-                <textarea type="text" name="detailedComplaint" id="detailedComplaint"
-                    formControlName="detailed_complaint" class="form-control" rows="3"></textarea>
+                <div class="form-group">
+                    <label for="detailedComplaint">Detailed Complaint: </label>
+                    <textarea id="detailedComplaint" name="detailedComplaint" type="text"
+                        formControlName="detailed_complaint" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && requestFormControls.detailed_complaint.errors }"
+                        rows="3">
+                    </textarea>
+                    <div *ngIf="submitted && requestFormControls.detailed_complaint.errors" class="invalid-feedback">
+                        <div *ngIf="requestFormControls.detailed_complaint.errors.required">Detailed Complaint is
+                            required</div>
+                    </div>
+                </div>
             </div>
             <div class="col-md-12" style="text-align: center;">
                 <div class="col-md-3 mx-auto">

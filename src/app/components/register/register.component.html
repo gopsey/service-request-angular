@@ -4,40 +4,66 @@
     <div class="col-md-12" style="text-align: center;">
         <form [formGroup]="registerForm" (ngSubmit)="onRegisterSubmit()">
             <div class="col-md-12">
-                <div class="col-md-3" style="display: inline-block">
-                    <label for="firstName">First Name: </label><br>
-                    <input type="text" name="firstName" id="firstName" formControlName="first_name"
-                        class="form-control" />
+                <div class="col-md-3 form-group" style="display: inline-block">
+                    <label for="firstName">First Name: </label>
+                    <input id="firstName" name="firstName" type="text" formControlName="first_name" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && registerFormControls.first_name.errors }" />
+                    <div *ngIf="submitted && registerFormControls.first_name.errors" class="invalid-feedback">
+                        <div *ngIf="registerFormControls.first_name.errors.required">First Name is required</div>
+                    </div>
                 </div>
 
-                <div class="col-md-3" style="display: inline-block">
-                    <label for="lastName">Last Name: </label><br>
-                    <input type="text" name="lastName" id="lastName" formControlName="last_name" class="form-control" />
-                </div>
-            </div>
-
-            <div class="col-md-12">
-                <div class="col-md-3" style="display: inline-block">
-                    <label for="companyCode">Company Code: </label><br>
-                    <input type="text" name="companyCode" id="companyCode" formControlName="companyCode" class="form-control" maxlength="7" />
-                </div>
-
-                <div class="col-md-3" style="display: inline-block">
-                    <label for="phone">Phone Number: </label><br>
-                    <input type="text" name="phone" id="phone" formControlName="phone" class="form-control" />
+                <div class="col-md-3 form-group" style="display: inline-block">
+                    <label for="lastName">Last Name: </label>
+                    <input id="lastName" name="lastName" type="text" formControlName="last_name" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && registerFormControls.last_name.errors }" />
+                    <div *ngIf="submitted && registerFormControls.last_name.errors" class="invalid-feedback">
+                        <div *ngIf="registerFormControls.last_name.errors.required">Last Name is required</div>
+                    </div>
                 </div>
             </div>
 
             <div class="col-md-12">
-                <div class="col-md-3" style="display: inline-block">
-                    <label for="email">Email ID: </label><br>
-                    <input type="email" name="email" id="email" formControlName="email" class="form-control" />
+                <div class="col-md-3 form-group" style="display: inline-block">
+                    <label for="companyCode">Company Code: </label>
+                    <input id="companyCode" name="companyCode" type="text" formControlName="companyCode"
+                        class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && registerFormControls.companyCode.errors }" />
+                    <div *ngIf="submitted && registerFormControls.companyCode.errors" class="invalid-feedback">
+                        <div *ngIf="registerFormControls.companyCode.errors.required">Company Code is required</div>
+                    </div>
                 </div>
 
-                <div class="col-md-3" style="display: inline-block">
-                    <label for="password">Password: </label><br>
-                    <input type="password" name="password" id="password" formControlName="password"
-                        class="form-control" />
+                <div class="col-md-3 form-group" style="display: inline-block">
+                    <label for="phone">Phone Number: </label>
+                    <input id="phone" name="phone" type="text" formControlName="phone" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && registerFormControls.phone.errors }" />
+                    <div *ngIf="submitted && registerFormControls.phone.errors" class="invalid-feedback">
+                        <div *ngIf="registerFormControls.phone.errors.required">Phone Number is required</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="col-md-3 form-group" style="display: inline-block">
+                    <label for="email">Email ID: </label>
+                    <input id="email" name="email" type="text" formControlName="email" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && registerFormControls.email.errors }" />
+                    <div *ngIf="submitted && registerFormControls.email.errors" class="invalid-feedback">
+                        <div *ngIf="registerFormControls.email.errors.required">Email ID is required</div>
+                        <div *ngIf="registerFormControls.email.errors.email">Email must be a valid email address</div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 form-group" style="display: inline-block">
+                    <label for="password">Password: </label>
+                    <input id="password" name="password" type="text" formControlName="password" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && registerFormControls.password.errors }" />
+                    <div *ngIf="submitted && registerFormControls.password.errors" class="invalid-feedback">
+                        <div *ngIf="registerFormControls.password.errors.required">Password is required</div>
+                        <div *ngIf="registerFormControls.password.errors.minlength">Password must be at least 6
+                            characters</div>
+                    </div>
                 </div>
             </div>
 

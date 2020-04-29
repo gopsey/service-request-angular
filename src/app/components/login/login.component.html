@@ -4,12 +4,26 @@
     <div class="col-md-12" style="text-align: center;">
         <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
             <div class="col-md-3 mx-auto">
-                <label for="email">Enter your email ID</label><br>
-                <input type="email" name="email" id="email" formControlName="email" class="form-control" />
+                <div class="form-group">
+                    <label for="email">Enter your email ID: </label>
+                    <input id="email" name="email" type="text" formControlName="email" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && loginFormControls.email.errors }" />
+                    <div *ngIf="submitted && loginFormControls.email.errors" class="invalid-feedback">
+                        <div *ngIf="loginFormControls.email.errors.required">Email field is required</div>
+                        <div *ngIf="loginFormControls.email.errors.email">Email must be a valid email address</div>
+                    </div>
+                </div>
 
-                <label for="password">Enter your password</label><br>
-                <input type="password" name="password" id="password" formControlName="password"
-                    class="form-control" />
+                <div class="form-group">
+                    <label for="password">Enter your password: </label>
+                    <input id="password" name="password" type="text" formControlName="password" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && loginFormControls.password.errors }" />
+                    <div *ngIf="submitted && loginFormControls.password.errors" class="invalid-feedback">
+                        <div *ngIf="loginFormControls.password.errors.required">Password field is required</div>
+                        <div *ngIf="loginFormControls.password.errors.minlength">Password must be at least 6 characters
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-md-12" style="text-align: center;">
                 <div class="col-md-3 mx-auto">

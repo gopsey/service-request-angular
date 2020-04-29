@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 
 import { ServiceRequestFormService } from '../../../services/service-request-form/service-request-form.service';
 
@@ -15,28 +15,37 @@ export class ServiceRequestFormComponent implements OnInit {
   @Input() getProfileDetails: any;
   public requestForm: any;
   public userProfileValues: any;
+  public submitted: boolean = false;
 
   ngOnInit(): void {
     this.requestForm = this.formBuilder.group({
-      product_model: '',
-      service_type: '',
-      product_invoice_number: '',
-      detailed_complaint: '',
+      product_model: ['', Validators.required],
+      service_type: ['', Validators.required],
+      product_invoice_number: ['', Validators.required],
+      detailed_complaint: ['', Validators.required],
       email: ''
     });
   }
 
+  // convenience getter for easy access to form fields
+  get requestFormControls() { return this.requestForm.controls; }
+
+  /**
+   * Hits createServiceRequest() call and creates request followed by a page reload
+   */
   onRequestSubmit() {
     let userEmail = (JSON.parse(this.getProfileDetails)).email;
     let requestFormValues = this.requestForm.value;
     requestFormValues.email = userEmail;
-    this.serviceRequestFormService.createServiceRequest(requestFormValues).subscribe((response) => {
-      console.log(response);
-      if (response) {
-        alert("Your Request has been submitted successfully!");
-        location.reload();
-      }
-    });
+    this.submitted = true;
+    if (!this.requestForm.invalid) {
+      this.serviceRequestFormService.createServiceRequest(requestFormValues).subscribe((response) => {
+        if (response) {
+          alert("Your Request has been submitted successfully!");
+          location.reload();
+        }
+      });
+    }
   }
 
 }
