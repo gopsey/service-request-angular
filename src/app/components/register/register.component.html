@@ -1,3 +1,4 @@
+<ngx-spinner type="ball-pulse-sync" size="medium"></ngx-spinner>
 <div class="container-fluid">
     <h1 style="text-align: center;">Register a new account</h1>
 
@@ -27,10 +28,14 @@
                 <div class="col-md-3 form-group" style="display: inline-block">
                     <label for="companyCode">Company Code: </label>
                     <input id="companyCode" name="companyCode" type="text" formControlName="companyCode"
-                        class="form-control"
+                        class="form-control" maxlength="7"
                         [ngClass]="{ 'is-invalid': submitted && registerFormControls.companyCode.errors }" />
                     <div *ngIf="submitted && registerFormControls.companyCode.errors" class="invalid-feedback">
                         <div *ngIf="registerFormControls.companyCode.errors.required">Company Code is required</div>
+                        <div
+                            *ngIf="registerFormControls.companyCode.errors.minlength">
+                            Company Code must be exactly 7
+                            characters</div>
                     </div>
                 </div>
 
@@ -57,7 +62,7 @@
 
                 <div class="col-md-3 form-group" style="display: inline-block">
                     <label for="password">Password: </label>
-                    <input id="password" name="password" type="text" formControlName="password" class="form-control"
+                    <input id="password" name="password" type="password" formControlName="password" class="form-control"
                         [ngClass]="{ 'is-invalid': submitted && registerFormControls.password.errors }" />
                     <div *ngIf="submitted && registerFormControls.password.errors" class="invalid-feedback">
                         <div *ngIf="registerFormControls.password.errors.required">Password is required</div>

@@ -3,8 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from "@angular/router";
 
+import { NgxSpinnerService } from 'ngx-spinner';
+
 import { RegisterService } from '../../services/register/register.service';
-import { Company } from '../../models/company.model';
 
 @Component({
    selector: 'app-register',
@@ -16,13 +17,14 @@ export class RegisterComponent implements OnInit {
    public registerForm: any;
    public submitted: boolean = false;
 
-   constructor(private formBuilder: FormBuilder, private registerService: RegisterService, private router: Router) { }
+   constructor(private formBuilder: FormBuilder, private registerService: RegisterService, private router: Router,
+      private spinner: NgxSpinnerService) { }
 
    ngOnInit(): void {
       this.registerForm = this.formBuilder.group({
          first_name: ['', Validators.required],
          last_name: ['', Validators.required],
-         companyCode: ['', Validators.required],
+         companyCode: ['', [Validators.required, Validators.minLength(7)]],
          phone: ['', Validators.required],
          email: ['', [Validators.required, Validators.email]],
          password: ['', [Validators.required, Validators.minLength(6)]]
@@ -39,8 +41,10 @@ export class RegisterComponent implements OnInit {
       let userCredentials = this.registerForm.value;
       this.submitted = true;
       if (!this.registerForm.invalid) {
+         this.spinner.show();
          this.registerService.register(userCredentials).subscribe((response) => {
             if (response !== null) {
+               this.spinner.hide();
                alert("You are registered successfully! Please login with your credentials.");
                this.router.navigate(['/login']);
             }

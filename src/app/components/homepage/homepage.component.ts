@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { NgxSpinnerService } from 'ngx-spinner';
+
 import { ServiceRequestFormService } from "./../../services/service-request-form/service-request-form.service";
 
 @Component({
@@ -13,13 +15,17 @@ export class HomepageComponent implements OnInit {
   public isNavigateTo: any = 'createRequest';
   public companyTicketsListHome: any;
 
-  constructor(private serviceRequestFormService: ServiceRequestFormService) { }
+  constructor(private serviceRequestFormService: ServiceRequestFormService, private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
+    this.spinner.show();
     this.getProfileDetailsHome = sessionStorage.getItem("userDetails");
     let companyId = (JSON.parse(this.getProfileDetailsHome)).id;
     this.serviceRequestFormService.getCompanyTicketsList(companyId).subscribe(response => {
-      this.companyTicketsListHome = response;
+      if (response) {
+        this.spinner.hide();
+        this.companyTicketsListHome = response;
+      }
     });
   }
 

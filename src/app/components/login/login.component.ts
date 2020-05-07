@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from "@angular/router";
 
+import { NgxSpinnerService } from 'ngx-spinner';
+
 import { LoginService } from '../../services/login/login.service';
 
 @Component({
@@ -15,7 +17,7 @@ export class LoginComponent implements OnInit {
    public userDetails: any;
    public submitted: boolean = false;
 
-   constructor(private formBuilder: FormBuilder, private loginService: LoginService, private router: Router) { }
+   constructor(private formBuilder: FormBuilder, private loginService: LoginService, private router: Router, private spinner: NgxSpinnerService) { }
 
    ngOnInit(): void {
       this.loginForm = this.formBuilder.group({
@@ -34,8 +36,10 @@ export class LoginComponent implements OnInit {
       this.submitted = true;
       let userCredentials = this.loginForm.value;
       if (!this.loginForm.invalid) {
+         this.spinner.show();
          this.loginService.login(userCredentials).subscribe((response) => {
             if (response) {
+               this.spinner.hide();
                // Setting user details in session storage
                sessionStorage.setItem('isLoggedIn', 'true');
                this.setProfileDetailsByEmail((userCredentials.email).toString());

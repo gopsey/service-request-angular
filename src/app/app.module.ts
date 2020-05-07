@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +15,8 @@ import { HomepageComponent } from './components/homepage/homepage.component';
 import { ServiceRequestFormComponent } from './components/homepage/service-request-form/service-request-form.component';
 import { RequestedSrListComponent } from './components/homepage/requested-sr-list/requested-sr-list.component';
 import { HomeAuthGuard } from './guards/home-auth.guard';
+
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
    declarations: [
@@ -29,7 +32,9 @@ import { HomeAuthGuard } from './guards/home-auth.guard';
       AppRoutingModule,
       FormsModule,
       ReactiveFormsModule,
-      HttpClientModule
+      HttpClientModule,
+      NgxSpinnerModule,
+      BrowserAnimationsModule
    ],
    providers: [
       LoginService,

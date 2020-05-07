@@ -1,3 +1,4 @@
+<ngx-spinner type="ball-pulse-sync" size="medium"></ngx-spinner>
 <div class="container-fluid">
     <h1 style="text-align: center;">Welcome to Service Request Application</h1>
 
@@ -16,7 +17,7 @@
 
                 <div class="form-group">
                     <label for="password">Enter your password: </label>
-                    <input id="password" name="password" type="text" formControlName="password" class="form-control"
+                    <input id="password" name="password" type="password" formControlName="password" class="form-control"
                         [ngClass]="{ 'is-invalid': submitted && loginFormControls.password.errors }" />
                     <div *ngIf="submitted && loginFormControls.password.errors" class="invalid-feedback">
                         <div *ngIf="loginFormControls.password.errors.required">Password field is required</div>
