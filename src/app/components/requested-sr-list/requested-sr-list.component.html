@@ -1,25 +1,21 @@
+<ngx-spinner type="ball-pulse-sync" size="medium"></ngx-spinner>
 <div class="container-fluid">
    <h1 style="text-align: center;">Service Requests raised in your company</h1>
-   <div class="col-md-12" style="text-align: center;">
+   <div class="col-md-12 requestTableWrapper">
       <table class="table table-hover" style="text-align: left;">
-         <div class="row">
-            <div class="col-sm"><b>Product Model</b></div>
-            <div class="col-sm"><b>Service Type</b></div>
-            <div class="col-sm"><b>Product Invoice number</b></div>
+         <div class="row rowTitle">
+            <div class="col-sm"><b>Request ID</b></div>
             <div class="col-sm"><b>Detailed Complaint</b></div>
             <div class="col-sm"><b>Current Status</b></div>
+            <div class="col-sm"><b>Created By</b></div>
             <div class="col-sm"><b>Created Time</b></div>
+            <div class="col-sm" *ngIf="isTechnician"><b>Company Name</b></div>
          </div>
          <div>
-            <div class="row" *ngFor="let request of companyTicketsList">
+            <div class="row rowData" *ngFor="let request of companyTicketsList | async"
+               (click)="individualTicketNavigate(request.id)">
                <div class="col">
-                  {{request.product_model}}
-               </div>
-               <div class="col">
-                  {{request.service_type}}
-               </div>
-               <div class="col">
-                  {{request.product_invoice_number}}
+                  {{request.id}}
                </div>
                <div class="col">
                   {{request.detailed_complaint}}
@@ -28,7 +24,13 @@
                   Open
                </div>
                <div class="col">
+                  {{request.createdBy}}
+               </div>
+               <div class="col">
                   {{request.created_time}}
+               </div>
+               <div class="col" *ngIf="isTechnician">
+                  {{request.companyName}}
                </div>
             </div>
          </div>

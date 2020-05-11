@@ -1,0 +1,16 @@
+.rowData, .rowTitle {
+    border-bottom: 1px solid #000000;
+}
+.rowData:hover {
+    background-color: #f5f5f5;
+    cursor: pointer;
+}
+h1 {
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.requestTableWrapper {
+    text-align: center;
+    border: 1px solid #000000;
+}

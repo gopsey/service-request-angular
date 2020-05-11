@@ -1,7 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
-import { ServiceRequestFormService } from '../../../services/service-request-form/service-request-form.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+
+import { ServiceRequestFormService } from '../../services/service-request-form/service-request-form.service';
 
 @Component({
   selector: 'app-service-request-form',
@@ -10,14 +12,14 @@ import { ServiceRequestFormService } from '../../../services/service-request-for
 })
 export class ServiceRequestFormComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder, private serviceRequestFormService: ServiceRequestFormService) { }
+  constructor(private formBuilder: FormBuilder, private serviceRequestFormService: ServiceRequestFormService, private spinner: NgxSpinnerService) { }
 
-  @Input() getProfileDetails: any;
+  public getProfileDetailsHome: any;
   public requestForm: any;
-  public userProfileValues: any;
   public submitted: boolean = false;
 
   ngOnInit(): void {
+    this.getProfileDetailsHome = sessionStorage.getItem("userDetails");
     this.requestForm = this.formBuilder.group({
       product_model: ['', Validators.required],
       service_type: ['', Validators.required],
@@ -34,13 +36,15 @@ export class ServiceRequestFormComponent implements OnInit {
    * Hits createServiceRequest() call and creates request followed by a page reload
    */
   onRequestSubmit() {
-    let userEmail = (JSON.parse(this.getProfileDetails)).email;
+    let userEmail = (JSON.parse(this.getProfileDetailsHome)).email;
     let requestFormValues = this.requestForm.value;
     requestFormValues.email = userEmail;
     this.submitted = true;
     if (!this.requestForm.invalid) {
+      this.spinner.show();
       this.serviceRequestFormService.createServiceRequest(requestFormValues).subscribe((response) => {
         if (response) {
+          this.spinner.hide();
           alert("Your Request has been submitted successfully!");
           location.reload();
         }

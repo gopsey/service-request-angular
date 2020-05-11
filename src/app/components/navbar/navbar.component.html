@@ -1,0 +1,22 @@
+<div class="topnav" *ngIf="isLoggedIn | async">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item" [routerLinkActive]="['active']">
+          <a id="newRequest" class="nav-link" href="javascript:void(0);" (click)="navigateRequest($event.target.id)">New
+            Service
+            Request</a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['active']">
+          <a id="viewRequest" class="nav-link" href="javascript:void(0);"
+            (click)="navigateRequest($event.target.id)">View
+            Requests</a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['active']">
+          <a id="logoutUser" class="nav-link" href="javascript:void(0);"
+            (click)="navigateRequest($event.target.id)">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>

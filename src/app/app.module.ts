@@ -11,21 +11,23 @@ import { RegisterComponent } from './components/register/register.component';
 
 import { LoginService } from './services/login/login.service';
 import { RegisterService } from './services/register/register.service';
-import { HomepageComponent } from './components/homepage/homepage.component';
-import { ServiceRequestFormComponent } from './components/homepage/service-request-form/service-request-form.component';
-import { RequestedSrListComponent } from './components/homepage/requested-sr-list/requested-sr-list.component';
+import { ServiceRequestFormComponent } from './components/service-request-form/service-request-form.component';
+import { RequestedSrListComponent } from './components/requested-sr-list/requested-sr-list.component';
+import { IndividualTicketComponent } from './components/individual-ticket/individual-ticket.component';
 import { HomeAuthGuard } from './guards/home-auth.guard';
 
 import { NgxSpinnerModule } from "ngx-spinner";
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
    declarations: [
       AppComponent,
       LoginComponent,
       RegisterComponent,
-      HomepageComponent,
       ServiceRequestFormComponent,
-      RequestedSrListComponent
+      RequestedSrListComponent,
+      IndividualTicketComponent,
+      NavbarComponent
    ],
    imports: [
       BrowserModule,

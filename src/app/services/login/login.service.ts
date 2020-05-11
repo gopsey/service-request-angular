@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { map } from "rxjs/operators";
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
    providedIn: 'root'
@@ -8,12 +9,18 @@ import { map } from "rxjs/operators";
 export class LoginService {
 
    private url: string = 'http://localhost:8080/serviceRequest';
+   public isLoggedIn = new BehaviorSubject<boolean>(false);
 
    constructor(private httpClient: HttpClient) { }
+
+   get checkIsLoggedIn() {
+      return this.isLoggedIn.asObservable();
+   }
 
    login(userCredentials: any): any | null {
       let loginResponse = this.httpClient.post(`${this.url}/userLogin`, userCredentials)
          .pipe(map((response: any) => {
+            this.isLoggedIn.next(true);
             return response;
          },
             error => {

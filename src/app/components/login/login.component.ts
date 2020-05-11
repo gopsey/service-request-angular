@@ -14,7 +14,6 @@ import { LoginService } from '../../services/login/login.service';
 export class LoginComponent implements OnInit {
 
    public loginForm: any;
-   public userDetails: any;
    public submitted: boolean = false;
 
    constructor(private formBuilder: FormBuilder, private loginService: LoginService, private router: Router, private spinner: NgxSpinnerService) { }
@@ -41,7 +40,6 @@ export class LoginComponent implements OnInit {
             if (response) {
                this.spinner.hide();
                // Setting user details in session storage
-               sessionStorage.setItem('isLoggedIn', 'true');
                this.setProfileDetailsByEmail((userCredentials.email).toString());
             }
          });
@@ -49,14 +47,14 @@ export class LoginComponent implements OnInit {
    }
 
    /**
-    * Hits getProfile() call, sets user details in session, navigates to homepage
+    * Hits getProfile() call, sets user details in session, navigates to home route
     * @param userEmail 
     */
    setProfileDetailsByEmail(userEmail: String) {
       this.loginService.getProfile(userEmail).subscribe((response) => {
          sessionStorage.setItem('userDetails', JSON.stringify(response));
          this.getProfileDetails();
-         this.router.navigate(['/home']);
+         this.router.navigate(['/']);
       });
    }
 
